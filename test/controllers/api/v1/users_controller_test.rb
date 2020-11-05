@@ -52,7 +52,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should forbid destroy user" do
-    assert_no_difference('user.count') do
+    assert_no_difference('User.count') do
       delete api_v1_user_url(@user), as: :json
     end
     assert_response :forbidden

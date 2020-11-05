@@ -22,8 +22,14 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should not create user with taken username" do
     assert_no_difference('User.count') do
-      post api_v1_users_url, params: {user: {username: @user.username, password: '123456'}}, as: :json
+      post api_v1_users_url, params: {user: {username: @user.username, password: '123456'} }, as: :json
     end
     assert_response :unprocessable_entity
   end
+
+  test "should update user" do
+    patch api_v1_user_url(@user), params: {user: {username: @user.username, password: '123456'} }, as: :json
+    assert_response :success
+  end
+
 end

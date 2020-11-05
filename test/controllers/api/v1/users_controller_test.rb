@@ -10,7 +10,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = JSON.parse(self.response.body)
-    assert_equal @user.username, json_response['username']
+    assert_equal @user.username, json_response['data']['attributes']['username']
   end
 
   test "should create user" do
